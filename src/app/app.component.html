@@ -1,0 +1,26 @@
+
+
+<div class="center">
+    <h1>Test Spiel</h1>
+    <div class="input_box" *ngIf="joined==false">
+        <input [(ngModel)]="name" placeholder="Enter Name">
+        <span>
+        <button (click)="onConnectButtonPressed()" type="submit">Join</button>
+        </span>
+    </div>
+
+    <div class="input_box" *ngIf="joined==true">
+        <div class="center">Playing as {{name}}</div>
+    </div>
+
+    <canvas #canvas width="600" height="600" ></canvas>
+    
+    <div class="input_board">
+        <h3>Players</h3>
+        <div *ngFor="let json of players_json">
+            {{json["n"]}}: {{json["h"]}}
+        </div>
+    </div>
+   
+    
+</div>
