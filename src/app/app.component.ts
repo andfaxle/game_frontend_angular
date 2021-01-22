@@ -16,6 +16,7 @@ export class AppComponent implements OnInit{
     this.serverConnector.connect();
     this.serverConnector.register("position_message",this.onPositionUpdate.bind(this));
     this.serverConnector.register("player_info",this.onInfoUpdate.bind(this));
+    this.serverConnector.register("dead",this.onDead.bind(this));
 
   }
 
@@ -30,6 +31,7 @@ export class AppComponent implements OnInit{
   @Input() name: string;
 
   joined = false;
+  dead = false;
 
   ngOnInit(): void {
     this.ctx = this.canvas.nativeElement.getContext('2d');
@@ -37,6 +39,10 @@ export class AppComponent implements OnInit{
 
   onConnectButtonPressed(){
     this.join();
+  }
+
+  onDead(_dead){
+    this.dead = true;
   }
 
   players_json = [];
@@ -168,8 +174,6 @@ export class AppComponent implements OnInit{
     this.ctx.lineTo(p3.x,p3.y);
     this.ctx.lineTo(p1.x,p1.y);
 
-    this.ctx.fill(); 
-
-    
-}
+    this.ctx.fill();   
+  }
 }
